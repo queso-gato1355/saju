@@ -103,9 +103,11 @@ Windows 콘솔 한글 깨짐 → `PYTHONIOENCODING=utf-8`.
 ## NAS 배포 정보 (사용자 확인 후 채울 것)
 
 - NAS CPU 아키텍처: **amd64** (사용자 확인, 2026-11-17)
-- Docker Hub 이미지(공개): `quesogato3924/saju-backend`, `quesogato3924/saju-frontend` — 1.0 = 최초 릴리스 (latest 도 같은 이미지)
-  - 릴리스: `docker build --platform linux/amd64 -t quesogato3924/<svc>:<ver> -t …:latest <dir>` → 로컬 compose 스모크 테스트 → `docker push`
-  - compose 는 `IMAGE_TAG`(.env, 기본 1.0)로 태그 선택
+- Docker Hub 이미지(공개): `quesogato3924/saju-backend`, `quesogato3924/saju-frontend` (amd64)
+  - 릴리스 = **버전 태그 + latest 를 항상 함께** push: `docker build --platform linux/amd64 -t quesogato3924/<svc>:<ver> -t quesogato3924/<svc>:latest <dir>` → 로컬 compose 스모크 테스트 → `docker push` 두 태그
+  - 두 서비스는 같은 버전 번호로 맞춘다 (변경 없는 쪽은 기존 이미지에 새 태그만 부여)
+  - compose 기본값은 `IMAGE_TAG=latest` + `pull_policy: always` → NAS 는 `docker compose up -d` 만으로 최신 반영. 롤백은 .env 의 IMAGE_TAG 를 버전으로 고정
+  - 릴리스 이력: 1.0 (최초), 1.0.1 (nginx Cloudflare 실제 IP 복원)
 - 접속: `TODO` (예: `ssh user@nas.local`)
 - 배포 경로: `TODO` (예: `/volume1/docker/saju`)
 - 외부 포트: `.env` 의 `WEB_PORT` (기본 8080)

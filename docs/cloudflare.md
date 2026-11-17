@@ -6,7 +6,7 @@
 ## 0. 전제
 
 - NAS에서 `docker compose up -d` 로 앱이 떠 있고, NAS 안에서 `curl http://localhost:8080/api/health` 가 `{"status":"ok"}`
-- frontend 이미지 **1.0.1 이상** (Cloudflare 실제 IP 복원 설정 포함). 1.0 은 모든 방문자가 IP 하나로 묶임
+- frontend 이미지 **1.0.1 이상** (Cloudflare 실제 IP 복원 설정 포함 — 기본값 `latest` 면 자동 충족). 1.0 은 모든 방문자가 IP 하나로 묶임
 
 ## 1. Public Hostname 추가 (대시보드에서 터널을 관리하는 경우 — 보통 이 방식)
 

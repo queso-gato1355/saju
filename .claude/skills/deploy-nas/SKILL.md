@@ -24,10 +24,11 @@ disable-model-invocation: true
 ```bash
 # 로컬: 새 버전이면 빌드·스모크 테스트·push (CLAUDE.md 의 릴리스 절차)
 scp docker-compose.yml .env.example <NAS_USER>@<NAS_HOST>:<DEPLOY_PATH>/
-ssh <NAS_USER>@<NAS_HOST> "cd <DEPLOY_PATH> && [ -f .env ] || cp .env.example .env; docker compose pull && docker compose up -d --no-build"
+ssh <NAS_USER>@<NAS_HOST> "cd <DEPLOY_PATH> && [ -f .env ] || cp .env.example .env; docker compose up -d --no-build"
 ```
 
-태그를 바꾸려면 NAS 의 `.env` 에서 `IMAGE_TAG` 만 수정.
+compose 가 `latest` + `pull_policy: always` 라서 `up -d` 할 때마다 최신 이미지를 받아 바뀐 컨테이너만 재시작한다.
+특정 버전으로 고정·롤백하려면 NAS 의 `.env` 에서 `IMAGE_TAG=1.0.1` 처럼 지정.
 
 
 ### A. 소스를 NAS 로 복사하고 NAS 에서 빌드 (아키텍처 문제 없음)
