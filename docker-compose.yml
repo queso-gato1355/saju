@@ -1,0 +1,48 @@
+services:
+  backend:
+    build: ./backend
+    image: quesogato3924/saju-backend:${IMAGE_TAG:-1.0}
+    restart: unless-stopped
+    expose:
+      - "8000"
+    environment:
+      TZ: Asia/Seoul
+      RATE_PER_MIN: ${API_RATE_PER_MIN:-120}
+      MAX_CONCURRENT: ${API_MAX_CONCURRENT:-4}
+      TRUST_PROXY: "1"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
+    networks: [internal]
+
+  frontend:
+    build: ./frontend
+    image: quesogato3924/saju-frontend:${IMAGE_TAG:-1.0}
+    restart: unless-stopped
+    ports:
+      # WEB_BIND=127.0.0.1 이면 NAS 밖(LAN)에서 직접 접속 불가 → Cloudflare 경유만 허용
+      - "${WEB_BIND:-0.0.0.0}:${WEB_PORT:-8080}:80"
+    environment:
+      TZ: Asia/Seoul
+    depends_on:
+      backend:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 128M
+    networks: [internal]
+
+networks:
+  internal: {}

@@ -1,0 +1,5 @@
+# 컨테이너(리눅스)에서 쓰는 파일이 많으므로 저장소·작업본 모두 LF 고정
+* text=auto eol=lf
+*.png binary
+*.woff binary
+*.woff2 binary

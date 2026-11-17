@@ -1,0 +1,5 @@
+fastapi==0.121.3
+uvicorn[standard]==0.54.0
+pydantic==2.14.3
+korean_lunar_calendar==0.4.0
+tzdata==2026.6

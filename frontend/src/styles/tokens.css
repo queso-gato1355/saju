@@ -1,0 +1,41 @@
+/* Figma 변수(만세력 대시보드)에서 가져온 디자인 토큰 */
+:root {
+  --text-inverse: #ffffff;
+  --text-primary: #171a23;
+  --text-muted: #666c7a;
+  --text-subtle: #9aa0ad;
+
+  --accent-primary: #7048e8;
+  --accent-soft: #f1ecfe;
+
+  --sidebar-bg: #12151f;
+  --sidebar-active: #232838;
+  --sidebar-text: #a3aab8;
+
+  --bg-canvas: #f3f4f7;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f8f9fb;
+  --border-default: #e6e8ee;
+
+  --element-wood: #2f9e44;
+  --element-fire: #e8590c;
+  --element-earth: #c99a2e;
+  --element-metal: #adb5c2;
+  --element-water: #1e2a44;
+  /* 글자색으로 쓸 때 대비 확보용 */
+  --element-metal-text: #7c8597;
+
+  --relation-hap: #4c6ef5;
+  --relation-chung: #e03131;
+  --relation-hyung: #f59f00;
+  --relation-pa: #be4bdb;
+  --relation-hae: #0c8599;
+
+  --font-sans: "IBM Plex Sans KR", system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-serif: "Noto Serif KR", "Batang", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Consolas", monospace;
+
+  --radius-card: 16px;
+  --radius-tile: 14px;
+  --radius-control: 10px;
+}
