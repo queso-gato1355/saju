@@ -107,7 +107,9 @@ Windows 콘솔 한글 깨짐 → `PYTHONIOENCODING=utf-8`.
   - 릴리스 = **버전 태그 + latest 를 항상 함께** push: `docker build --platform linux/amd64 -t quesogato3924/<svc>:<ver> -t quesogato3924/<svc>:latest <dir>` → 로컬 compose 스모크 테스트 → `docker push` 두 태그
   - 두 서비스는 같은 버전 번호로 맞춘다 (변경 없는 쪽은 기존 이미지에 새 태그만 부여)
   - compose 기본값은 `IMAGE_TAG=latest` + `pull_policy: always` → NAS 는 `docker compose up -d` 만으로 최신 반영. 롤백은 .env 의 IMAGE_TAG 를 버전으로 고정
-  - 릴리스 이력: 1.0 (최초), 1.0.1 (nginx Cloudflare 실제 IP 복원)
+  - 릴리스 이력: 1.0 (최초), 1.0.1 (nginx Cloudflare 실제 IP 복원), 1.0.2 (폰트 data: 인라인 제거 · CSP 에 Cloudflare beacon 허용 · compose CPU 제한 제거, backend 는 1.0.1 재태그)
+- NAS 커널은 CFS 미지원 → compose 에 `cpus` 제한을 넣지 말 것 (`NanoCPUs cannot be set` 오류)
+- Cloudflare Web Analytics 가 beacon 스크립트를 자동 삽입 (서브도메인별 해제 불가) → CSP 에 `static.cloudflareinsights.com` / `cloudflareinsights.com` 허용 유지
 - 접속: `TODO` (예: `ssh user@nas.local`)
 - 배포 경로: `TODO` (예: `/volume1/docker/saju`)
 - 외부 포트: `.env` 의 `WEB_PORT` (기본 8080)

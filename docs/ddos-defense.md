@@ -34,7 +34,8 @@
 - 프론트도 같은 요청은 메모리 캐시해서 정상 사용자의 요청 수 자체가 적음
 
 ### ⑥ 컨테이너 (`docker-compose.yml`)
-- backend CPU 1.0 / 메모리 256MB, frontend CPU 0.5 / 128MB → 공격받아도 NAS 의 나머지는 살아 있음
+- 메모리 제한 backend 256MB / frontend 128MB → 공격받아도 NAS 의 나머지는 살아 있음
+- CPU 제한(`cpus`)은 쓰지 않는다: NAS 커널에 CFS 대역폭 제어가 없어 `NanoCPUs cannot be set` 오류로 기동 실패. CPU 는 backend `MAX_CONCURRENT`(동시 계산 수) + nginx rate limit 으로 묶는다
 - backend 는 외부 포트 없음, read-only 파일시스템, 권한 제거
 
 ## 권장 운영 방식 (택1, 위에서부터 추천)

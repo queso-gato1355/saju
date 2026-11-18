@@ -20,7 +20,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1.0"
           memory: 256M
     networks: [internal]
 
@@ -42,7 +41,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.5"
           memory: 128M
     networks: [internal]
 
